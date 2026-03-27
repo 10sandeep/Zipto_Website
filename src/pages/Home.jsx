@@ -5,6 +5,7 @@ import ForBusinessSection from "../components/home/ForBusinessSection";
 import CTASection from "../components/home/CTASection";
 import Footer from "../components/layout/Footer";
 import BecomeRider from "../components/home/BecomeRider";
+import  Contact  from "../components/home/ContactUs";
 export default function Home() {
   return (
     <>
@@ -14,6 +15,7 @@ export default function Home() {
       <ForBusinessSection />
       <BecomeRider />
       <CTASection />
+      <Contact/>
       <Footer />
       
     </>

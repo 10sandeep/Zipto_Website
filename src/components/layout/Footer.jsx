@@ -5,6 +5,7 @@ import {
   Phone,
   Mail,
   ArrowUpRight,
+  Send,
 } from "lucide-react";
 import ziptoLogo from "../../assets/zipto.jpeg";
 import { Link } from "react-router-dom";
@@ -39,6 +40,10 @@ export default function Footer() {
     toast.success("Message sent! We'll be in touch soon 🚀", {
       position: "top-right",
       autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
     });
     setContactOpen(false);
   };
@@ -58,33 +63,28 @@ export default function Footer() {
 
   return (
     <>
-      <footer className="bg-white text-gray-600 relative overflow-hidden border-t border-gray-100">
-        {/* Top gradient border */}
-        <div className="h-[3px] w-full bg-gradient-to-r from-blue-600 via-sky-400 to-orange-500" />
+      <footer className="bg-gradient-to-b from-gray-50 to-white text-gray-600 relative overflow-hidden border-t border-gray-200">
+        {/* Top accent line */}
+        <div className="h-1 w-full bg-gradient-to-r from-blue-600 via-sky-400 to-orange-500" />
 
-        {/* Background glow */}
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-50/60 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-orange-50/60 rounded-full blur-3xl pointer-events-none" />
-
-        <div className="relative max-w-7xl mx-auto px-5 sm:px-8 lg:px-10 pt-16 pb-10">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8 pb-12 border-b border-gray-200">
-
-            {/* Brand */}
-            <div className="sm:col-span-2 lg:col-span-1">
-              <div className="flex items-center gap-3 mb-5">
+        <div className="relative max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 pb-12 border-b border-gray-200">
+            {/* Brand Section */}
+            <div className="lg:col-span-4">
+              <div className="flex items-center gap-3 mb-6">
                 <img
                   src={ziptoLogo}
                   alt="Zipto Logo"
-                  className="h-12 w-12 rounded-xl object-cover shadow-md"
+                  className="h-14 w-14 rounded-2xl object-cover shadow-lg ring-2 ring-gray-100"
                 />
-                <span className="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight">
+                <span className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-orange-500 bg-clip-text text-transparent">
                   Zipto
                 </span>
               </div>
 
-              <p className="text-gray-500 text-sm sm:text-base leading-relaxed mb-7 max-w-xs">
+              <p className="text-gray-600 text-base leading-relaxed mb-8 max-w-sm">
                 Fast, reliable, and affordable logistics solutions built for
-                businesses and individuals.
+                businesses and individuals across India.
               </p>
 
               <div className="flex gap-3">
@@ -97,9 +97,9 @@ export default function Footer() {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={social.label}
-                      className="group w-10 h-10 rounded-xl bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500 hover:bg-gradient-to-br hover:from-blue-600 hover:to-orange-500 hover:text-white transition-all duration-300 hover:scale-110"
+                      className="group w-11 h-11 rounded-xl bg-white border border-gray-200 flex items-center justify-center text-gray-500 hover:bg-gradient-to-br hover:from-blue-600 hover:to-orange-500 hover:text-white hover:border-transparent transition-all duration-300 hover:scale-110 hover:shadow-lg"
                     >
-                      <Icon size={17} />
+                      <Icon size={18} />
                     </a>
                   );
                 })}
@@ -107,72 +107,111 @@ export default function Footer() {
             </div>
 
             {/* Quick Links */}
-            <div>
-              <h4 className="text-gray-900 font-semibold text-base uppercase tracking-widest mb-6">
+            <div className="lg:col-span-3">
+              <h4 className="text-gray-900 font-bold text-sm uppercase tracking-wider mb-6">
                 Quick Links
               </h4>
-              <ul className="space-y-3">
+              <ul className="space-y-3.5">
                 {links.map((link, i) => (
                   <li key={i}>
                     <button
                       onClick={() => handleNavigation(link)}
-                      className="flex items-center gap-1.5 text-gray-500 hover:text-gray-900 text-sm sm:text-base transition"
+                      className="group flex items-center gap-2 text-gray-600 hover:text-blue-600 text-base transition-colors duration-200"
                     >
-                      • {link.name}
+                      <ArrowUpRight
+                        size={16}
+                        className="text-gray-400 group-hover:text-blue-600 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200"
+                      />
+                      {link.name}
                     </button>
                   </li>
                 ))}
               </ul>
             </div>
 
-            {/* Contact */}
-            <div className="sm:col-span-2 lg:col-span-2">
-              <h4 className="text-gray-900 font-semibold text-base uppercase tracking-widest mb-6">
+            {/* Contact Information */}
+            <div className="lg:col-span-5">
+              <h4 className="text-gray-900 font-bold text-sm uppercase tracking-wider mb-6">
                 Contact Us
               </h4>
 
               <ul className="space-y-5">
-
-                <li className="flex items-start gap-3">
-                  <MapPin size={16} className="text-blue-500 mt-1" />
-                  <span className="text-gray-500 text-sm">
-                    Plot No-781, Maharishi College Rd, Saheed Nagar,
-                    Bhubaneswar, Odisha 751007
-                  </span>
+                <li className="flex items-start gap-4 group">
+                  <div className="w-10 h-10 rounded-lg bg-blue-50 flex items-center justify-center flex-shrink-0 group-hover:bg-blue-100 transition-colors">
+                    <MapPin size={18} className="text-blue-600" />
+                  </div>
+                  <div>
+                    <p className="text-gray-700 text-sm font-medium mb-1">
+                      Our Office
+                    </p>
+                    <p className="text-gray-500 text-sm leading-relaxed">
+                      Plot No-781, Maharishi College Rd, Saheed Nagar,
+                      Bhubaneswar, Odisha 751007
+                    </p>
+                  </div>
                 </li>
 
-                <li className="flex items-center gap-3">
-                  <Phone size={16} className="text-orange-500" />
-                  <a href="tel:+919090029996" className="text-gray-500 text-sm">
-                    +91 9090029996 (10 AM – 7 PM)
-                  </a>
+                <li className="flex items-start gap-4 group">
+                  <div className="w-10 h-10 rounded-lg bg-orange-50 flex items-center justify-center flex-shrink-0 group-hover:bg-orange-100 transition-colors">
+                    <Phone size={18} className="text-orange-600" />
+                  </div>
+                  <div>
+                    <p className="text-gray-700 text-sm font-medium mb-1">
+                      Call Us
+                    </p>
+                    <a
+                      href="tel:+919090029996"
+                      className="text-gray-500 text-sm hover:text-orange-600 transition-colors"
+                    >
+                      +91 9090029996
+                    </a>
+                    <p className="text-gray-400 text-xs mt-1">
+                      Mon-Sat: 10 AM – 7 PM
+                    </p>
+                  </div>
                 </li>
 
-                <li className="flex items-center gap-3">
-                  <Mail size={16} className="text-blue-500" />
-                  <a
-                    href="mailto:supportzipto@gmail.com"
-                    className="text-gray-500 text-sm"
-                  >
-                    supportzipto@gmail.com
-                  </a>
+                <li className="flex items-start gap-4 group">
+                  <div className="w-10 h-10 rounded-lg bg-blue-50 flex items-center justify-center flex-shrink-0 group-hover:bg-blue-100 transition-colors">
+                    <Mail size={18} className="text-blue-600" />
+                  </div>
+                  <div>
+                    <p className="text-gray-700 text-sm font-medium mb-1">
+                      Email Us
+                    </p>
+                    <a
+                      href="mailto:supportzipto@gmail.com"
+                      className="text-gray-500 text-sm hover:text-blue-600 transition-colors"
+                    >
+                      supportzipto@gmail.com
+                    </a>
+                    <p className="text-gray-400 text-xs mt-1">
+                      24×7 Email Support
+                    </p>
+                  </div>
                 </li>
-
-                <span className="text-xs text-gray-400 ml-7">
-                  24×7 Email Support
-                </span>
-
               </ul>
             </div>
           </div>
 
-          {/* Bottom */}
-          <div className="pt-7 flex flex-col sm:flex-row justify-between items-center text-gray-400 text-xs">
+          {/* Bottom Section */}
+          <div className="pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-gray-500 text-sm">
             <p>© {new Date().getFullYear()} Zipto. All rights reserved.</p>
 
-            <div className="flex gap-4">
-              <Link to="/privacy-policy">Privacy Policy</Link>
-              <Link to="/terms-of-service">Terms & Conditions</Link>
+            <div className="flex gap-6 text-sm">
+              <Link
+                to="/privacy-policy"
+                className="hover:text-gray-900 transition-colors"
+              >
+                Privacy Policy
+              </Link>
+              <span className="text-gray-300">|</span>
+              <Link
+                to="/terms-of-service"
+                className="hover:text-gray-900 transition-colors"
+              >
+                Terms & Conditions
+              </Link>
             </div>
           </div>
         </div>
@@ -180,24 +219,66 @@ export default function Footer() {
 
       {/* Contact Modal */}
       {contactOpen && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-          <div className="bg-white p-8 rounded-xl w-full max-w-md relative">
-            <button
-              onClick={() => setContactOpen(false)}
-              className="absolute top-3 right-3"
-            >
-              <FaTimes />
-            </button>
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4 animate-fadeIn">
+          <div className="bg-white rounded-2xl w-full max-w-lg relative shadow-2xl animate-slideUp">
+            {/* Header */}
+            <div className="relative bg-gradient-to-r from-blue-600 to-orange-500 px-8 py-6 rounded-t-2xl">
+              <button
+                onClick={() => setContactOpen(false)}
+                className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full bg-white/20 hover:bg-white/30 text-white transition-colors"
+                aria-label="Close modal"
+              >
+                <FaTimes size={16} />
+              </button>
+              <h2 className="text-2xl font-bold text-white">Get in Touch</h2>
+              <p className="text-blue-50 text-sm mt-1">
+                We'd love to hear from you
+              </p>
+            </div>
 
-            <h2 className="text-2xl font-bold mb-4 text-center">
-              Get in Touch
-            </h2>
+            {/* Form */}
+            <form onSubmit={handleSubmit} className="p-8 space-y-5">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Your Name
+                </label>
+                <input
+                  type="text"
+                  placeholder="John Doe"
+                  required
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                />
+              </div>
 
-            <form onSubmit={handleSubmit} className="flex flex-col gap-3">
-              <input placeholder="Your Name" required className="border p-2 rounded" />
-              <input type="email" placeholder="Your Email" required className="border p-2 rounded" />
-              <textarea placeholder="Message" required className="border p-2 rounded" />
-              <button className="bg-blue-600 text-white py-2 rounded">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Email Address
+                </label>
+                <input
+                  type="email"
+                  placeholder="john@example.com"
+                  required
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Message
+                </label>
+                <textarea
+                  placeholder="Tell us how we can help you..."
+                  required
+                  rows={4}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all resize-none"
+                />
+              </div>
+
+              <button
+                type="submit"
+                className="w-full bg-gradient-to-r from-blue-600 to-orange-500 text-white font-semibold py-3.5 rounded-lg hover:shadow-lg hover:scale-[1.02] transition-all duration-200 flex items-center justify-center gap-2"
+              >
+                <Send size={18} />
                 Send Message
               </button>
             </form>

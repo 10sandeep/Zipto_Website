@@ -1,13 +1,12 @@
 import ziptoLogo from "../../assets/zipto.jpeg";
-import { FaDownload, FaBars, FaTimes, FaPaperPlane } from "react-icons/fa";
+import { FaDownload, FaBars, FaTimes } from "react-icons/fa";
 import { useState, useEffect } from "react";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Link, useLocation } from "react-router-dom";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
-  const [contactOpen, setContactOpen] = useState(false);
   const [downloadPopup, setDownloadPopup] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeLink, setActiveLink] = useState("home");
@@ -28,13 +27,13 @@ export default function Navbar() {
 
   // Prevent body scroll when modals are open
   useEffect(() => {
-    if (open || contactOpen || downloadPopup) {
+    if (open || downloadPopup) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "";
     }
     return () => { document.body.style.overflow = ""; };
-  }, [open, contactOpen, downloadPopup]);
+  }, [open, downloadPopup]);
 
   const links = [
     { name: "Home", id: "home" },
@@ -42,30 +41,18 @@ export default function Navbar() {
     { name: "Vehicles", id: "Our Delivery Vehicles" },
     { name: "For Business", id: "for-business" },
     { name: "Become a Rider", id: "rider" },
-    { name: "Contact", id: "contact" },
+    { name: "Contact", id: "contact" },  // ✅ scrolls to <section id="contact">
   ];
 
   const handleNavigation = (link) => {
     setOpen(false);
-    if (link.name === "Contact") {
-      setContactOpen(true);
-      return;
-    }
     setActiveLink(link.id || link.name);
+
+    // Smooth-scroll to the section with matching id
     const section = document.getElementById(link.id);
     if (section) {
       section.scrollIntoView({ behavior: "smooth", block: "start" });
     }
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    toast.success("Message sent! We'll be in touch soon 🚀", {
-      position: "top-right",
-      autoClose: 3000,
-      style: { background: "#0f172a", color: "#fff", border: "1px solid #f97316" },
-    });
-    setContactOpen(false);
   };
 
   return (
@@ -445,57 +432,6 @@ export default function Navbar() {
           line-height: 1.5;
         }
 
-        /* Form */
-        .form-field {
-          background: rgba(255,255,255,0.04);
-          border: 1px solid rgba(255,255,255,0.08);
-          border-radius: 10px;
-          padding: 12px 16px;
-          font-family: 'DM Sans', sans-serif;
-          font-size: 0.9rem;
-          color: #fff;
-          width: 100%;
-          outline: none;
-          transition: border-color 0.2s ease, background 0.2s ease;
-          display: block;
-          margin-bottom: 14px;
-          box-sizing: border-box;
-        }
-
-        .form-field::placeholder { color: rgba(255,255,255,0.3); }
-
-        .form-field:focus {
-          border-color: var(--accent-blue);
-          background: rgba(255,255,255,0.06);
-        }
-
-        textarea.form-field { resize: none; }
-
-        .btn-submit {
-          width: 100%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 10px;
-          padding: 13px;
-          border-radius: 10px;
-          background: var(--accent);
-          color: #fff;
-          font-family: 'DM Sans', sans-serif;
-          font-size: 0.9375rem;
-          font-weight: 600;
-          border: none;
-          cursor: pointer;
-          margin-top: 4px;
-          transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
-        }
-
-        .btn-submit:hover {
-          transform: translateY(-1px);
-          box-shadow: 0 6px 24px rgba(249,115,22,0.3);
-          opacity: 0.92;
-        }
-
         /* Coming soon badge */
         .coming-soon-badge {
           display: inline-flex;
@@ -646,29 +582,6 @@ export default function Navbar() {
             </div>
           </div>
         </>
-      )}
-
-      {/* ───────── CONTACT MODAL ───────── */}
-      {contactOpen && (
-        <div className="modal-overlay" onClick={() => setContactOpen(false)}>
-          <div className="modal-card" onClick={(e) => e.stopPropagation()}>
-            <button className="modal-close" onClick={() => setContactOpen(false)}>
-              <FaTimes size={14} />
-            </button>
-            <p className="modal-title">Get in <span>Touch</span></p>
-            <p className="modal-subtitle">We'd love to hear from you. Fill in the form and we'll get back to you shortly.</p>
-
-            <form onSubmit={handleSubmit}>
-              <input type="text" placeholder="Your name" className="form-field" required />
-              <input type="email" placeholder="Email address" className="form-field" required />
-              <textarea rows="4" placeholder="Your message" className="form-field" required />
-              <button type="submit" className="btn-submit">
-                <FaPaperPlane size={14} />
-                Send Message
-              </button>
-            </form>
-          </div>
-        </div>
       )}
 
       {/* ───────── DOWNLOAD POPUP ───────── */}

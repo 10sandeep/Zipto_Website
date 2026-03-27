@@ -9,11 +9,11 @@ import {
 import ziptoLogo from "../assets/zipto.jpeg";
 import { useNavigate } from "react-router-dom";
 // Import custom vehicle images
-import bikeIcon from "../assets/bike.png";
-import scootyIcon from "../assets/scooty.png";
-import autoIcon from "../assets/auto.png";
-import pickupIcon from "../assets/car.png";
-import miniTruckIcon from "../assets/truck.png";
+import bikeIcon from "../assets/Bike.png";
+import scootyIcon from "../assets/Scooter.png";
+import autoIcon from "../assets/Auto.png";
+import pickupIcon from "../assets/Pickup.png";
+import miniTruckIcon from "../assets/Truck.png";
 import herovideo from "../assets/About-hero-video.mp4";
 
 import WhyChooseSection from "../components/home/WhyChooseSection";

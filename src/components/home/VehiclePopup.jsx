@@ -16,6 +16,8 @@ export default function VehiclePopup({ vehicle, close }) {
     setTimeout(close, 280);
   }
 
+  const accent = getAccentColor(vehicle.color);
+
   return (
     <div
       onClick={(e) => e.target === e.currentTarget && handleClose()}
@@ -31,158 +33,144 @@ export default function VehiclePopup({ vehicle, close }) {
         padding: "16px",
         transition: "opacity 0.28s ease",
         opacity: visible ? 1 : 0,
-        fontFamily: "'Georgia', 'Times New Roman', serif",
       }}
     >
       <div
         style={{
-          background: "#fafaf8",
+          background: "#fff",
           borderRadius: "20px",
           width: "100%",
-          maxWidth: "520px",
-          maxHeight: "92vh",
+          maxWidth: "380px",
+          maxHeight: "85vh",
           overflowY: "auto",
           position: "relative",
-          boxShadow: "0 32px 80px rgba(0,0,0,0.38), 0 0 0 1px rgba(0,0,0,0.06)",
+          boxShadow: "0 24px 64px rgba(0,0,0,0.3)",
           transform: visible ? "translateY(0) scale(1)" : "translateY(24px) scale(0.97)",
           transition: "transform 0.3s cubic-bezier(0.34,1.56,0.64,1), opacity 0.28s ease",
           opacity: visible ? 1 : 0,
           scrollbarWidth: "none",
         }}
       >
-        {/* Accent bar derived from vehicle color */}
+        {/* Close button */}
+        <button
+          onClick={handleClose}
+          aria-label="Close"
+          style={{
+            position: "absolute",
+            top: "12px",
+            right: "12px",
+            width: "30px",
+            height: "30px",
+            border: "1.5px solid #e5e5e0",
+            borderRadius: "8px",
+            background: "white",
+            cursor: "pointer",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            color: "#666",
+            zIndex: 10,
+            transition: "all 0.18s",
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.background = "#111";
+            e.currentTarget.style.color = "white";
+            e.currentTarget.style.borderColor = "#111";
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.background = "white";
+            e.currentTarget.style.color = "#666";
+            e.currentTarget.style.borderColor = "#e5e5e0";
+          }}
+        >
+          <X size={13} strokeWidth={2.2} />
+        </button>
+
+        {/* Hero image banner */}
         <div
           style={{
-            height: "4px",
+            background: `${accent}12`,
             borderRadius: "20px 20px 0 0",
-            background: getAccentGradient(vehicle.color),
+            padding: "28px 20px 20px",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            borderBottom: `1px solid ${accent}22`,
           }}
-        />
+        >
+          <img
+            src={vehicle.icon}
+            alt={vehicle.title}
+            style={{
+              width: "90px",
+              height: "90px",
+              objectFit: "contain",
+              marginBottom: "12px",
+              filter: "drop-shadow(0 4px 10px rgba(0,0,0,0.1))",
+            }}
+          />
 
-        {/* Header section */}
-        <div style={{ padding: "28px 28px 0" }}>
-          <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: "12px" }}>
+          <h2
+            style={{
+              margin: 0,
+              fontSize: "1.2rem",
+              fontWeight: 700,
+              color: "#111",
+              letterSpacing: "-0.02em",
+              textAlign: "center",
+              fontFamily: "'Georgia', serif",
+            }}
+          >
+            {vehicle.title}
+          </h2>
 
-            {/* Icon + title */}
-            <div style={{ display: "flex", alignItems: "center", gap: "16px", flex: 1, minWidth: 0 }}>
-              <div
-                style={{
-                  width: "60px",
-                  height: "60px",
-                  minWidth: "60px",
-                  borderRadius: "16px",
-                  background: getAccentGradient(vehicle.color),
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  boxShadow: `0 8px 24px ${getAccentShadow(vehicle.color)}`,
-                }}
-              >
-                <img
-                  src={vehicle.icon}
-                  alt={vehicle.title}
-                  style={{ width: "30px", height: "30px", objectFit: "contain", filter: "brightness(0) invert(1)" }}
-                />
-              </div>
-
-              <div style={{ minWidth: 0 }}>
-                <h2
-                  style={{
-                    margin: 0,
-                    fontSize: "clamp(1.2rem, 4vw, 1.55rem)",
-                    fontWeight: 700,
-                    color: "#111",
-                    letterSpacing: "-0.02em",
-                    lineHeight: 1.2,
-                    fontFamily: "'Georgia', serif",
-                  }}
-                >
-                  {vehicle.title}
-                </h2>
-                <p
-                  style={{
-                    margin: "4px 0 0",
-                    fontSize: "0.82rem",
-                    color: "#888",
-                    letterSpacing: "0.08em",
-                    textTransform: "uppercase",
-                    fontFamily: "system-ui, sans-serif",
-                    fontWeight: 500,
-                  }}
-                >
-                  {vehicle.subtitle}
-                </p>
-              </div>
-            </div>
-
-            {/* Close button */}
-            <button
-              onClick={handleClose}
-              aria-label="Close"
+          {vehicle.subtitle && (
+            <p
               style={{
-                minWidth: "36px",
-                width: "36px",
-                height: "36px",
-                border: "1.5px solid #e5e5e0",
-                borderRadius: "10px",
-                background: "white",
-                cursor: "pointer",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                color: "#666",
-                transition: "all 0.18s",
-                flexShrink: 0,
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.background = "#111";
-                e.currentTarget.style.color = "white";
-                e.currentTarget.style.borderColor = "#111";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.background = "white";
-                e.currentTarget.style.color = "#666";
-                e.currentTarget.style.borderColor = "#e5e5e0";
+                margin: "4px 0 0",
+                fontSize: "0.72rem",
+                color: "#888",
+                letterSpacing: "0.08em",
+                textTransform: "uppercase",
+                fontWeight: 500,
+                fontFamily: "system-ui, sans-serif",
               }}
             >
-              <X size={16} strokeWidth={2.2} />
-            </button>
-          </div>
+              {vehicle.subtitle}
+            </p>
+          )}
 
           {/* Capacity badge */}
           <div
             style={{
               display: "inline-flex",
               alignItems: "center",
-              gap: "6px",
-              marginTop: "20px",
-              padding: "7px 14px",
+              gap: "5px",
+              marginTop: "12px",
+              padding: "5px 12px",
               borderRadius: "100px",
-              background: "#f0f0eb",
-              fontSize: "0.82rem",
+              background: "white",
+              border: `1px solid ${accent}33`,
+              fontSize: "0.75rem",
               color: "#444",
-              fontFamily: "system-ui, sans-serif",
               fontWeight: 600,
-              letterSpacing: "0.01em",
+              fontFamily: "system-ui, sans-serif",
             }}
           >
-            <Zap size={13} style={{ color: getAccentColor(vehicle.color) }} />
+            <Zap size={11} style={{ color: accent }} />
             Capacity: {vehicle.capacity}
           </div>
         </div>
 
-        {/* Divider */}
-        <div style={{ height: "1px", background: "#eeeee9", margin: "24px 28px 0" }} />
-
         {/* Body */}
-        <div style={{ padding: "24px 28px 28px", display: "flex", flexDirection: "column", gap: "24px" }}>
+        <div style={{ padding: "18px 20px 20px", display: "flex", flexDirection: "column", gap: "16px" }}>
 
           {/* Ideal Uses */}
           <div>
             <SectionLabel>Ideal Uses</SectionLabel>
-            <div style={{ display: "flex", flexDirection: "column", gap: "8px", marginTop: "12px" }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: "6px", marginTop: "8px" }}>
               {vehicle.details.uses.map((use, i) => (
-                <ListItem key={i} accentColor={getAccentColor(vehicle.color)} icon="use">
+                <ListItem key={i} accentColor={accent} icon="dot">
                   {use}
                 </ListItem>
               ))}
@@ -192,9 +180,9 @@ export default function VehiclePopup({ vehicle, close }) {
           {/* Why Choose */}
           <div>
             <SectionLabel>Why Choose</SectionLabel>
-            <div style={{ display: "flex", flexDirection: "column", gap: "8px", marginTop: "12px" }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: "6px", marginTop: "8px" }}>
               {vehicle.details.benefits.map((b, i) => (
-                <ListItem key={i} accentColor={getAccentColor(vehicle.color)} icon="check">
+                <ListItem key={i} accentColor={accent} icon="check">
                   {b}
                 </ListItem>
               ))}
@@ -212,7 +200,7 @@ function SectionLabel({ children }) {
     <p
       style={{
         margin: 0,
-        fontSize: "0.7rem",
+        fontSize: "0.62rem",
         fontWeight: 700,
         letterSpacing: "0.12em",
         textTransform: "uppercase",
@@ -231,21 +219,21 @@ function ListItem({ children, accentColor, icon }) {
       style={{
         display: "flex",
         alignItems: "flex-start",
-        gap: "10px",
-        padding: "10px 14px",
-        borderRadius: "10px",
-        background: "white",
+        gap: "8px",
+        padding: "8px 12px",
+        borderRadius: "8px",
+        background: "#f9f9f7",
         border: "1px solid #eeeee9",
-        fontSize: "0.88rem",
+        fontSize: "0.82rem",
         color: "#333",
         fontFamily: "system-ui, sans-serif",
         lineHeight: 1.5,
       }}
     >
-      <span style={{ marginTop: "1px", flexShrink: 0, color: accentColor }}>
+      <span style={{ marginTop: "2px", flexShrink: 0, color: accentColor }}>
         {icon === "check"
-          ? <CheckCircle2 size={15} />
-          : <span style={{ display: "block", width: "7px", height: "7px", borderRadius: "50%", background: accentColor, marginTop: "5px" }} />
+          ? <CheckCircle2 size={13} />
+          : <span style={{ display: "block", width: "6px", height: "6px", borderRadius: "50%", background: accentColor, marginTop: "4px" }} />
         }
       </span>
       {children}
@@ -253,7 +241,6 @@ function ListItem({ children, accentColor, icon }) {
   );
 }
 
-// Utility: extract a usable accent color from Tailwind class string
 function getAccentColor(colorClass = "") {
   const map = {
     blue: "#3b82f6", red: "#ef4444", green: "#22c55e",
@@ -266,15 +253,5 @@ function getAccentColor(colorClass = "") {
   for (const [key, val] of Object.entries(map)) {
     if (colorClass.includes(key)) return val;
   }
-  return "#111";
-}
-
-function getAccentGradient(colorClass = "") {
-  const c = getAccentColor(colorClass);
-  return `linear-gradient(135deg, ${c}dd, ${c}99)`;
-}
-
-function getAccentShadow(colorClass = "") {
-  const c = getAccentColor(colorClass);
-  return `${c}44`;
+  return "#3b82f6";
 }

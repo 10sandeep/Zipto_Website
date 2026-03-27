@@ -10,8 +10,6 @@ export default function ServiceCard({
   onClick
 }) {
 
- 
-
   return (
 
     // Gradient Border Wrapper
@@ -21,15 +19,15 @@ export default function ServiceCard({
       <div className="relative bg-white rounded-3xl p-7 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
 
         {/* Icon */}
-       <div
-  className={`w-16 h-16 flex items-center justify-center rounded-2xl mb-5 ${color}`}
->
-  <img
-    src={icon}
-    alt={title}
-    className="w-8 h-8 object-contain"
-  />
-</div>
+        <div
+          className={`w-20 h-20 flex items-center justify-center rounded-2xl mb-5 ${color}`}
+        >
+          <img
+            src={icon}
+            alt={title}
+            className="w-14 h-14 object-contain"
+          />
+        </div>
 
         {/* Title */}
         <h3 className="text-xl font-semibold text-gray-900 mb-1">
@@ -50,7 +48,7 @@ export default function ServiceCard({
         <div className="flex justify-between items-center">
 
           <p className="font-semibold bg-gradient-to-r from-blue-600 to-orange-500 bg-clip-text text-transparent">
-           Starting at {price}
+            Starting at {price}
           </p>
 
           <button

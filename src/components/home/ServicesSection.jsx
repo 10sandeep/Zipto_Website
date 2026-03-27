@@ -2,13 +2,12 @@ import ServiceCard from "./ServiceCard";
 
 import { useState } from "react";
 import VehiclePopup from "./VehiclePopup";
-import bikeIcon from "../../assets/bike.png";
-import scootyIcon from "../../assets/scooty.png";
-import autoIcon from "../../assets/auto.png";
-import pickupIcon from "../../assets/car.png";
-import truckIcon from "../../assets/truck.png";
+import bikeIcon from "../../assets/Bike.png";
+import scootyIcon from "../../assets/Scooter.png";
+import autoIcon from "../../assets/Auto.png";
+import pickupIcon from "../../assets/Pickup.png";
+import truckIcon from "../../assets/Truck.png";
 export default function ServicesSection() {
-
   const [selectedVehicle, setSelectedVehicle] = useState(null);
 
   const vehicles = [
@@ -24,9 +23,9 @@ export default function ServicesSection() {
         benefits: [
           "Fastest delivery option",
           "Easy navigation in traffic",
-          "Affordable for short distance"
-        ]
-      }
+          "Affordable for short distance",
+        ],
+      },
     },
     {
       title: "Scooty Delivery",
@@ -40,9 +39,9 @@ export default function ServicesSection() {
         benefits: [
           "Cost efficient",
           "Reliable for daily deliveries",
-          "Quick pickup and drop"
-        ]
-      }
+          "Quick pickup and drop",
+        ],
+      },
     },
     {
       title: "Auto Delivery",
@@ -56,9 +55,9 @@ export default function ServicesSection() {
         benefits: [
           "Higher capacity",
           "Perfect for business logistics",
-          "Affordable city transport"
-        ]
-      }
+          "Affordable city transport",
+        ],
+      },
     },
     {
       title: "Pickup Delivery",
@@ -72,9 +71,9 @@ export default function ServicesSection() {
         benefits: [
           "Large loading space",
           "Ideal for bulky items",
-          "Reliable logistics"
-        ]
-      }
+          "Reliable logistics",
+        ],
+      },
     },
     {
       title: "Mini Truck",
@@ -88,10 +87,10 @@ export default function ServicesSection() {
         benefits: [
           "High load capacity",
           "Perfect for large shipments",
-          "Best for B2B logistics"
-        ]
-      }
-    }
+          "Best for B2B logistics",
+        ],
+      },
+    },
   ];
 
   return (
@@ -99,7 +98,6 @@ export default function ServicesSection() {
       id="Our Delivery Vehicles"
       className="relative py-20 px-6 bg-gradient-to-b from-white to-gray-100 scroll-mt-28"
     >
-
       {/* Heading */}
       <div className="text-center mb-16">
         <h2 className="text-4xl font-bold">
@@ -110,7 +108,8 @@ export default function ServicesSection() {
         </h2>
 
         <p className="text-gray-600 mt-4 text-lg">
-          Choose the right vehicle for every delivery — from small parcels to bulk shipments.
+          Choose the right vehicle for every delivery — from small parcels to
+          bulk shipments.
         </p>
       </div>
 
@@ -118,7 +117,7 @@ export default function ServicesSection() {
       <div className="grid lg:grid-cols-5 md:grid-cols-3 sm:grid-cols-2 gap-8">
         {vehicles.map((vehicle) => (
           <ServiceCard
-           key={vehicle.title} 
+            key={vehicle.title}
             {...vehicle}
             onClick={() => setSelectedVehicle(vehicle)}
           />
@@ -138,7 +137,6 @@ export default function ServicesSection() {
         Zipto’s multi-vehicle network ensures every delivery is matched with the
         right vehicle for speed, efficiency, and affordability.
       </p>
-
     </section>
   );
 }

@@ -2,11 +2,11 @@ import ServiceCard from "./ServiceCard";
 
 import { useState } from "react";
 import VehiclePopup from "./VehiclePopup";
-import bikeIcon from "../../assets/Bike.png";
-import scootyIcon from "../../assets/Scooter.png";
-import autoIcon from "../../assets/Auto.png";
-import pickupIcon from "../../assets/Pickup.png";
-import truckIcon from "../../assets/Truck.png";
+import bikeIcon from "../../assets/bike.png";
+import scootyIcon from "../../assets/scooter.png";
+import autoIcon from "../../assets/auto.png";
+import pickupIcon from "../../assets/pickup.png";
+import truckIcon from "../../assets/truck.png";
 export default function ServicesSection() {
   const [selectedVehicle, setSelectedVehicle] = useState(null);
 

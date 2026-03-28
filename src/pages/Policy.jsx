@@ -220,7 +220,7 @@ export default function PrivacyPolicy() {
             If you have questions about this Privacy Policy, contact us.
           </p>
 
-          <p>Email:  ridezipto.com@gmail.com</p>
+          <p>Email:  supportzipto@gmail.com</p>
           <p>Phone:91+ 9090029996</p>
           <p>Plot No-781, Maharishi College Rd, in front of DN Kingsland, Saheed Nagar, Bhubaneswar, Odisha 751007</p>
 
